@@ -12,7 +12,7 @@ const StarRating = ({ rating, maxRating, ratingCount }) => {
             <div className="ratingStar">
                 {/* Full stars */}
                 {[...Array(fullStars)].map((_, index) => (
-                    <StarIcon />
+                    <StarIcon key={index} />
                 ))}
 
                 {/* Half star */}
@@ -22,7 +22,7 @@ const StarRating = ({ rating, maxRating, ratingCount }) => {
 
                 {/* Empty stars */}
                 {[...Array(emptyStars)].map((_, index) => (
-                    <StarIcon />
+                    <StarIcon key={index}/>
                 ))}
 
                 {/* Rating text */}

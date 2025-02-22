@@ -16,7 +16,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
  * }}
  */
 export function Aside({ children, heading, type }) {
-  const { type: activeType, content, close } = useAside();
+  const { activeType, content, close } = useAside();
   const expanded = type === activeType;
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function Aside({ children, heading, type }) {
     return () => abortController.abort();
   }, [close, expanded]);
 
-  return (
+  return expanded ? (
     <div
       aria-modal
       className={`overlay ${expanded ? 'expanded' : ''} sideDrawer`}
@@ -53,50 +53,37 @@ export function Aside({ children, heading, type }) {
         <main>{content || children}</main>
       </aside>
     </div>
-  );
+  ) : null;
 }
 
 const AsideContext = createContext(null);
 
 Aside.Provider = function AsideProvider({ children }) {
-  const [type, setType] = useState('closed');
-  const [content, setContent] = useState(null);
+  const [activeType, setActiveType] = useState('closed');
+  const [activeContent, setActiveContent] = useState(null);
+
+  const open = (type, content) => {
+    setActiveType(type);
+    setActiveContent(content);
+  };
+  const close = () => {
+    setActiveType('closed');
+    setActiveContent(null);
+  };
 
   return (
-    <AsideContext.Provider
-      value={{
-        type,
-        open: (mode, content) => {
-          setType(mode);
-          setContent(content);
-        },
-        close: () => {
-          setType('closed')
-          setContent(null);
-        },
-        content
-      }}
-    >
+    <AsideContext.Provider value={{ activeType, open, close, content: activeContent }}>
       {children}
     </AsideContext.Provider>
   );
 };
 
 export function useAside() {
-  const aside = useContext(AsideContext);
-  if (!aside) {
+  const context = useContext(AsideContext);
+  if (!context) {
     throw new Error('useAside must be used within an AsideProvider');
   }
-  return aside;
+  return context;
 }
 
-/** @typedef {'search' | 'cart' | 'mobile' | 'closed'} AsideType */
-/**
- * @typedef {{
- *   type: AsideType;
- *   open: (mode: AsideType) => void;
- *   close: () => void;
- * }} AsideContextValue
- */
-
-/** @typedef {import('react').ReactNode} ReactNode */
+/** @typedef {'search' | 'cart' | 'mobile' | 'productDetails' | 'closed'} AsideType */

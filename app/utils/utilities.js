@@ -17,3 +17,15 @@ export const getRatingCount = (metafields) => {
     const ratingCountMetafield = metafields.find((metafield) => metafield?.key === 'rating_count');
     return ratingCountMetafield ? ratingCountMetafield.value : null;
 };
+
+export const slugify = (string) => {
+    return string
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+}

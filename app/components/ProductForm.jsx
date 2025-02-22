@@ -51,6 +51,7 @@ export function ProductForm({product, selectedVariant, variants}) {
  * @param {{option: VariantOption}}
  */
 function ProductOptions({option}) {
+  console.log(option)
   return (
     <div className="product-options" key={option.name}>
       <h5>{option.name}</h5>

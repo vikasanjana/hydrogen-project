@@ -175,7 +175,8 @@ body {
     margin-right: 4px;
 }
 
-.add-to-cart-button, .select-options-button {
+.add-to-cart-button,
+.select-options-button {
     display: block;
     width: 100%;
     padding: 7px;
@@ -185,35 +186,60 @@ body {
     margin-top: 10px;
     cursor: pointer;
 }
+
 .add-to-cart-button.sold-out {
     background-color: rgb(148, 75, 16);
 }
 
 
-.ratingStarsWrapper{
+.ratingStarsWrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.ratingStarsWrapper .ratingStar{
+.ratingStarsWrapper .ratingStar {
     display: flex;
 }
 
 /* quickViewSidebar */
-.sideDrawer aside{
+.sideDrawer aside {
     overflow-y: auto;
 }
-#quickViewSidebar .product-price{
+
+#quickViewSidebar .product-price {
     font-weight: bold;
 }
 
-#quickViewSidebar .product-price-details{
+#quickViewSidebar .product-price-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-#quickViewSidebar .average-rating-text{
+
+#quickViewSidebar .average-rating-text {
     font-weight: bold;
     font-size: 15px;
+}
+
+/* Product Options Name */
+#quickViewSidebar .product-options-grid {
+    display: flex;
+    gap: 30px;
+}
+
+
+#quickViewSidebar input {
+    display: none;
+}
+
+#quickViewSidebar input:checked+label {
+    border: 4px solid #B5B5B5;
+}
+
+#quickViewSidebar label {
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    border-radius: 8px;
 }

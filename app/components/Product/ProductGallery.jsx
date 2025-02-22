@@ -7,7 +7,6 @@ import { ProductImage } from '../ProductImage';
 import { Navigation, Pagination } from 'swiper/modules';
 
 const ProductGallery = ({ images }) => {
-    console.log(images);
     return (
         <div id="quickViewSidebarImageSlider">
             <Swiper
@@ -21,7 +20,6 @@ const ProductGallery = ({ images }) => {
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={image.id}>
-                        {console.log(image)}
                         <ProductImage image={image} />
                     </SwiperSlide>
                 ))}

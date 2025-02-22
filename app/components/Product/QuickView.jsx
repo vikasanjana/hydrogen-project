@@ -4,10 +4,9 @@ import ProductTitle from './ProductTitle';
 import { ProductPrice } from '../ProductPrice';
 import { getRating, getRatingCount } from '~/utils/utilities';
 import ProductAverageRating from './ProductAverageRating';
-import { ProductForm } from '../ProductForm';
+import { ProductForm } from './ProductForm';
 
 const QuickView = ({ product }) => {
-    console.log(product);
     const { title, images, featuredImage, variantsCount: { count }, metafields, selectedOrFirstAvailableVariant, variants } = product;
     const rating = getRating(metafields)
     const ratingCount = getRatingCount(metafields)
